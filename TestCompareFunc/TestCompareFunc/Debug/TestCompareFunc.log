@@ -1,0 +1,4 @@
+﻿  Main.cpp
+e:\qinran\practice\stlanalysis\testcomparefunc\testcomparefunc\main.cpp(35): warning C4715: “compareStringsMine”: 不是所有的控件路径都返回值
+  TestCompareFunc.vcxproj -> E:\Qinran\Practice\STLAnalysis\TestCompareFunc\Debug\TestCompareFunc.exe
+  TestCompareFunc.vcxproj -> E:\Qinran\Practice\STLAnalysis\TestCompareFunc\Debug\TestCompareFunc.pdb (Partial PDB)
