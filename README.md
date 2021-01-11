@@ -10,7 +10,9 @@ C++新手可以来看两眼共同学习，老司机的话，大佬！：
  
 学习侯捷专家在B站的[《C++STL与泛型编程高级》视频](https://www.bilibili.com/video/BV1Yb411p7UK)
 
-强烈建议读者去看侯捷老师的视频，看完我真的觉得：救命! C++也太正点了吧！看辣妹跳脱衣舞的眼神.jpg
+强烈建议读者去看侯捷老师的视频，看完我真的觉得：
+
+>救命! C++也太正点了吧！:) 看辣妹跳脱衣舞的眼神.jpg
 
 感谢侯捷专家带我走到C++和STL的殿堂门口，让我真切体会到如此令人着迷的计算机大宝剑...
 
@@ -141,22 +143,25 @@ OOP和GP，采用GP可以让Containers和Algorithms团队各司其职，它们�
 
 这些都是C++比较基本的东西，不多赘述
 
->**推荐书籍：《C++ Templates》
+>**推荐书籍：《C++ Templates》**
 
 template<class T> 和 template<typename T>都可以，无所谓~
 
 泛化和特化
-template <class Key> struct hash{...};
+template <class Key> struct hash{...};\
+
 template<> struct hash<char>{...};
 
 泛化和偏特化:
 
 个数的偏特化如下：
 template <class T,class Alloc = alloc> class vector{...};
+
 template <class Alloc> class vector<bool,Alloc>{...};
 
 范围的偏特化如下：
 template <class Iterator> struct iterator_traits{...};
+
 template <class T> struct iterattor<T*>{...};
 
 ## 第十一讲
@@ -172,6 +177,7 @@ operator new() 和 malloc()：
 分配器最重要的两个函数：allocate和deallocate，其实底层还是调用C库的malloc和free~
 
 int* p = allocator<int>().allocate(512,(int*)0);
+
 allocator<int>().deallocate(p,512);
 
 上面的code中，allocator<int>()相当于就是一个没有名称的object，叫做仿函数。(有点像匿名函数那种调调呢~)
@@ -181,15 +187,19 @@ allocator程序员直接调用难用，因为你要写自己归还多少内存�
 侯捷老师这里吐槽分配器的内部实现，太多额外开销，太多cookie，仅仅是封装malloc和free，没有任何优化。
 
 G2.9的分配器令人称赞，它的stl_alloc.h中的alloc分配器，负责管理长度为16的链表，每个结点管理一串链表。所有的容器需要内存的时候，都会跟这个分配器要内存。
+
 比如第0号链表，负责8个字节的内存；第1号链表，负责16个字节的内存，以此类推,这些内存都是之前跟系统要好的(还是内存池的原理吧...)
 
 [分配器alloc](images/alloc.png)
 
 G4.9的分配器又改了,,,开始allocate和deallocate，之前2.9版本设计好的分配器变成了__pool_alloc, 大佬很疑惑，为什么不用2.9版本的？2.9的设计的很棒啊!(嗯，我也很懵逼...)
+
 所以在用容器的时候，程序员可以自己指定分配器:
+
 vector<string,__gnu_cxx::__pool_alloc<stirng>> vec;
 
 plus：有时候并没有文档告诉你，用哪个分配器比较好，但是你可以通过看源代码自己去判断，哪个更优...
+
 plus：为什么我在msvc stl源码里没看到分配器的源码...
 
 所以[SGI-STL源码Git地址](https://github.com/steveLauwh/SGI-STL/) 这个Repo已经总结的好好了...自愧不如
@@ -199,6 +209,7 @@ plus：为什么我在msvc stl源码里没看到分配器的源码...
 标准库里很少有继承(Inheritance)，（也尽量不要用继承），基本都是复合(Composition)
 
 vector和array容器都是连续空间。
+
 deque是分段连续空间。
 
 像stack里面有一个deque，这就是复合：A的功能是通过拥有一个B来实现的。
