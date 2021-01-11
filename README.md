@@ -1,6 +1,6 @@
 # STLAnalysis
 
-学习STL源码及C++实现自己的STL库--因为在实际编程中，感觉越来越需要这个东西，但是由于没有系统的了解过其原理，每次使用都会忘记，都要去搜帖子...
+学习STL源码及C++实现自己的STL库(如果有时间造轮子的话...)--因为在实际编程中，感觉越来越需要这个东西，但是由于没有系统的了解过其原理，每次使用都会忘记，都要去搜帖子...
  
 本Repo主要是用来学习STL源码和内部的数据结构原理，并参杂自己的尝试与体会，不具备普适性。
  
@@ -9,6 +9,10 @@ C++新手可以来看两眼共同学习，老司机的话，大佬！：
 ![抱大腿](images/hug-big-leg.jpg) 
  
 学习侯捷专家在B站的[《C++STL与泛型编程高级》视频](https://www.bilibili.com/video/BV1Yb411p7UK)
+
+强烈建议读者去看侯捷老师的视频，看完我真的觉得：救命! C++也太正点了吧！看辣妹跳脱衣舞的眼神.jpg
+
+感谢侯捷专家带我走到C++和STL的殿堂门口，让我真切体会到如此令人着迷的计算机大宝剑，如此令人流连忘返...
 
 好啦，言归正传！
 
@@ -59,7 +63,7 @@ Map/Multimap-红黑树
 
 Unordered Containers 无序容器
 
-代码：
+代码：TestArray/TestCompareFunc
 
 ## 第四讲
 
@@ -71,7 +75,7 @@ Unordered Containers 无序容器
 
 vector容器的扩展是以2倍的方式 扩展。
 
-代码：
+代码：TestVector
 
 ## 第五讲
 
@@ -83,6 +87,8 @@ queue：先进先出
 
 如果容器内有自己的算法，那么最好用自带的，这种一般效率，比全局的算法要高。
 stack和queue其实没有自己的数据结构，而是用了deque这种数据结构，进行不同的表现，严格来讲叫做适配器。
+
+代码：TestDeque/TestList/TestForwardList
 
 ## 第六讲
 
@@ -142,9 +148,11 @@ template <class Key> struct hash{...};
 template<> struct hash<char>{...};
 
 泛化和偏特化:
+
 个数的偏特化如下：
 template <class T,class Alloc = alloc> class vector{...};
 template <class Alloc> class vector<bool,Alloc>{...};
+
 范围的偏特化如下：
 template <class Iterator> struct iterator_traits{...};
 template <class T> struct iterattor<T*>{...};
@@ -157,76 +165,147 @@ template <class T> struct iterattor<T*>{...};
 
 operator new() 和 malloc()：
 
+关于内存分配这里，内存的大小分配应该是16的倍数。编译器所实际分配的内存，高于程序员肉眼估计的，详细的内存分配规则还是要看内存管理那个repo
 
+分配器最重要的两个函数：allocate和deallocate，其实底层还是调用C库的malloc和free~
 
+int* p = allocator<int>().allocate(512,(int*)0);
+allocator<int>().deallocate(p,512);
+
+上面的code中，allocator<int>()相当于就是一个没有名称的object，叫做仿函数。(有点像匿名函数那种调调呢~)
+
+allocator程序员直接调用难用，因为你要写自己归还多少内存。这个太令人头秃了。
+
+侯捷老师这里吐槽分配器的内部实现，太多额外开销，太多cookie，仅仅是封装malloc和free，没有任何优化。
+
+G2.9的分配器令人称赞，它的stl_alloc.h中的alloc分配器，负责管理长度为16的链表，每个结点管理一串链表。所有的容器需要内存的时候，都会跟这个分配器要内存。
+比如第0号链表，负责8个字节的内存；第1号链表，负责16个字节的内存，以此类推,这些内存都是之前跟系统要好的(还是内存池的原理吧...)
+
+[分配器alloc](images/alloc.png)
+
+G4.9的分配器又改了,,,开始allocate和deallocate，之前2.9版本设计好的分配器变成了__pool_alloc, 大佬很疑惑，为什么不用2.9版本的？2.9的设计的很棒啊!(嗯，我也很懵逼...)
+所以在用容器的时候，程序员可以自己指定分配器:
+vector<string,__gnu_cxx::__pool_alloc<stirng>> vec;
+
+plus：有时候并没有文档告诉你，用哪个分配器比较好，但是你可以通过看源代码自己去判断，哪个更优...
+plus：为什么我在msvc stl源码里没看到分配器的源码...
+
+所以[SGI-STL源码Git地址](https://github.com/steveLauwh/SGI-STL/) 这个Repo已经总结的好好了...自愧不如
 
 ## 第十二讲
 
+标准库里很少有继承(Inheritance)，（也尽量不要用继承），基本都是复合(Composition)
+
+vector和array容器都是连续空间。
+deque是分段连续空间。
+
+像stack里面有一个deque，这就是复合：A的功能是通过拥有一个B来实现的。
+
+C++11中slist换名字叫做forward list(我说怎么找不到slist源代码)...
+
 ## 第十三讲
+
+来谈List这个最具代表性的Container~
+
+
 
 ## 第十四讲
 
+
 ## 第十五讲
+
 
 ## 第十六讲
 
+
 ## 第十七讲
+
 
 ## 第十八讲
 
+
 ## 第十九讲
+
 
 ## 第二十讲
 
+
 ## 第二十一讲
+
 
 ## 第二十二讲
 
+
 ## 第二十三讲
+
 
 ## 第二十四讲
 
+
 ## 第二十五讲
+
 
 ## 第二十六讲
 
+
 ## 第二十七讲
+
 
 ## 第二十八讲
 
+
 ## 第二十九讲
+
 
 ## 第三十讲
 
+
 ## 第三十一讲
+
 
 ## 第三十二讲
 
+
 ## 第三十三讲
+
 
 ## 第三十四讲
 
+
 ## 第三十五讲
+
 
 ## 第三十六讲
 
+
 ## 第三十七讲
+
 
 ## 第三十八讲
 
+
 ## 第三十九讲
+
 
 ## 第四十讲
 
+
 ## 第四十一讲
+
 
 ## 第四十二讲
 
+
 ## 第四十三讲
+
 
 ## 第四十四讲
 
+
 ## 第四十五讲
 
+
 ## 第四十六讲
+
+
 
