@@ -153,6 +153,12 @@ template <class T> struct iterattor<T*>{...};
 
 重点来了~ 首先是分配器allocators~
 
+分配器好不好，对于效率来说非常重要，毕竟内存是有限的
+
+operator new() 和 malloc()：
+
+
+
 
 ## 第十二讲
 
