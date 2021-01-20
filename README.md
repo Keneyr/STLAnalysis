@@ -294,9 +294,9 @@ forward_list这个，只要会了双向链表，就比较容易了。
 
 ## 第十八讲
 
-哦~终于到stack和queue这个数据结构中最开始要认识的东西了~
+哦！终于到stack和queue这个数据结构中最开始要认识的东西了
 
->以下章节都很重要，和数据结构和算法息息相关。一定要好好看，可以同时拌着《Introduction to algorithms》以及LeetCode 下肚更香。
+>**以下章节都很重要，和数据结构和算法息息相关。一定要好好看，可以同时拌着《Introduction to algorithms》以及LeetCode 下肚更香。**
 
 容器deque:
 
