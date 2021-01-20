@@ -10,6 +10,8 @@ C++新手可以来看两眼共同学习，老司机的话，大佬！：
  
 学习侯捷专家在B站的[《C++STL与泛型编程高级》视频](https://www.bilibili.com/video/BV1Yb411p7UK)
 
+(小声bb，后来视频没了，建议肉身翻墙)
+
 强烈建议读者去看侯捷老师的视频，看完我真的觉得：
 
 >救命! C++也太正点了吧！:) 看辣妹跳脱衣舞的眼神.jpg
@@ -188,7 +190,7 @@ allocator程序员直接调用难用，因为你要写自己归还多少内存�
 
 G2.9的分配器令人称赞，它的stl_alloc.h中的alloc分配器，负责管理长度为16的链表，每个结点管理一串链表。所有的容器需要内存的时候，都会跟这个分配器要内存。
 
-比如第0号链表，负责8个字节的内存；第1号链表，负责16个字节的内存，以此类推,这些内存都是之前跟系统要好的(还是内存池的原理吧...)
+比如第0号链表，负责8个字节的内存；第1号链表，负责16个字节的内存，以此类推,这些内存都是之前跟系统要好的(还是内存池的原理吧,而且这个结构怎么看起来像哈希表中解决冲突的链接法...)
 
 ![分配器alloc](images/alloc.png)
 
@@ -232,28 +234,72 @@ C++11中slist换名字叫做forward list(我说怎么找不到slist源代码)...
 
 ## 第十五讲
 
-讲iterator traits。为什么要设计这种东西出来？
-
 Iterator设计要遵循的原则：
 
-各种萃取器: type traits/iterator traits/char traits/allocator traits/pointer traits/array traits
+Iterator 是算法和容器之间的桥梁。所以Iterator要回答算法的5个问题，也就是算法要知道Iterator的性质：
+
+1、Iterator的分类(有的Iterator向前走，有的Iterator可以往后退，有的Iterator可以跳着走) Iterator_category()
+
+2、Iterator指向元素的类型(字符串/整型)_valueType
+
+3、Iterator之间的距离 \_Distance
+
+4、reference
+
+5、pointer
+
+所以Iterator必须列出5种associated types~
+
+观察List源码中定义__list_iterator这个struct，内部就有这5种类型.
+
+但如果iterator并不是个class呢？例如native pointer呢？(只有class才能在内部 typedef)
+
+在平时编程的时候，我们给算法algorithms传递的参数可能就是一个原始指针，而不是像Iterator迭代器这样的泛化指针，那么算法怎么问出来那些它想要的指针性质呢？这时候就用到了萃取器~
+
+Iterator traits用以分离class iterators和non-class iterators
+
+各种**萃取器**: type traits/iterator traits/char traits/allocator traits/pointer traits/array traits
 
 ## 第十六讲
 
 vector深度探索
 
-扩充，2倍成长，不能在原地扩充。而应该去找一块空间。
+>扩充，2倍成长，不能在原地扩充。而应该去找一块空间，然后把原来的东西搬过去，这就会大量调用拷贝构造和析构函数。所以对于vector来讲，扩存是比较耗的。
 
-新版源码实现，乱七八糟，舍近求远，何必如此。。
+刚开始创建vector对象时，长度是1。不然以后没法扩存。。
+
+在之前讲链表时，迭代器是一个class，因为链表在内存空间中不连续，但是vector就不用设计迭代器为class类型，因为它在内存空间中是连续的，所以直接设计vetor的迭代器是一个native pointer就好了（但是某些编译器新版内部也给更新成class类型了）。
+
+因此~，vector内部的萃取器：
+
+![](images/vector萃取器.png)
+
+新版源码实现(4.9版)，乱七八糟，舍近求远，何必如此。。不多说。
 
 ## 第十七讲
 
-array比vector简单
+array比vector简单~
 
+为什么要把数组包装成容器来用呢？
 
+包装成容器以后就要遵循容器的规则，要定义自己的迭代器，并给迭代器定义associate types~
 
+如果不是，就不能享受到仿函数，算法等一些已经包装好的轮子。
+
+array在内存中也是连续的空间，所以迭代器就是一个native pointer。
+
+新版本依然让人头痛，不适合新手去研究。
+
+forward_list这个，只要会了双向链表，就比较容易了。
 
 ## 第十八讲
+
+哦~终于到stack和queue这个数据结构中最开始要认识的东西了~
+
+>以下章节都很重要，和数据结构和算法息息相关。一定要好好看，可以同时拌着《Introduction to algorithms》以及LeetCode 下肚更香。
+
+容器deque:
+
 
 
 ## 第十九讲
