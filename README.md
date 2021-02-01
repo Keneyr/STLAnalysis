@@ -312,11 +312,11 @@ first和last是标兵，指向一个buffer的头和尾。
 
 几乎所有容器内部都有两个成员函数，begin()和end()，其实就是返回的first和last标兵~
 
-![deque](deque.png)
+![deque](images/deque.png)
 
 创建一个deque的时候，这个对象本身会有40个字节：
 
-![deque大小](deque大小.png)
+![deque大小](images/deque大小.png)
 
 
 ## 第十九讲 deque/queue和stack深度探索(下)
