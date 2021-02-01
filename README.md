@@ -272,7 +272,7 @@ vector深度探索
 
 因此~，vector内部的萃取器：
 
-![](images/vector萃取器.png)
+![vector萃取器](images/vector萃取器.png)
 
 新版源码实现(4.9版)，乱七八糟，舍近求远，何必如此。。不多说。
 
@@ -312,11 +312,11 @@ first和last是标兵，指向一个buffer的头和尾。
 
 几乎所有容器内部都有两个成员函数，begin()和end()，其实就是返回的first和last标兵~
 
-![](deque.png)
+![deque](deque.png)
 
 创建一个deque的时候，这个对象本身会有40个字节：
 
-![](deque大小.png)
+![deque大小](deque大小.png)
 
 
 ## 第十九讲
