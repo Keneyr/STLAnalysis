@@ -24,14 +24,14 @@ C++新手可以来看两眼共同学习，老司机的话，大佬！：
 
 # 简单使用及测试
 
-## 第一讲
+## 第一讲 认识headers、版本、中药资源
 
 Generic Programming（泛型编程），STL乃是GP（泛型编程）最成功的作品。所以会了STL基本就会GP。
 
 >推荐书籍: **《C++标准库体系结构与内核分析》~** **《The C++ Standard Library》~** **《STL源码剖析》~**
 >推荐网站：[www.cplusplus.com](http://wwww.cpluscplus.com) [en.cppreference.com](http://www.en.cppreference.com) [gcc.gnu.org](https://gcc.gnu.org/)
 
-## 第二讲
+## 第二讲 STL体系结构基础介绍
 
 STL六大部件(Components)：
 
@@ -54,7 +54,7 @@ STL设计理念和OO的观念是不一样的！
 
 代码：SixComponents
 
-## 第三讲
+## 第三讲 容器之分类与各种测试一
 
 **Sequence Containers 序列式容器有:**
 Array
@@ -71,7 +71,7 @@ Unordered Containers 无序容器
 
 代码：TestArray/TestCompareFunc
 
-## 第四讲
+## 第四讲 容器之分类与各种测试二
 
 老师的个人经验：
 
@@ -83,7 +83,7 @@ vector容器的扩展是以2倍的方式 扩展。
 
 代码：TestVector
 
-## 第五讲
+## 第五讲 容器之分类与各种测试三
 
 List就是双链表
 Forward List才是单向链表,注意前向链表用的是push_front而不是push_back
@@ -96,7 +96,7 @@ stack和queue其实没有自己的数据结构，而是用了deque这种数据�
 
 代码：TestDeque/TestList/TestForwardList
 
-## 第六讲
+## 第六讲 容器之分类与各种测试四
 
 关联式容器的查找是非常快的！
 multiset：key和value都是一个值，元素可以重复；但是set容器不可以重复。
@@ -112,7 +112,7 @@ unordered_map/unordered_set不多赘述
 
 注意：multimap/map不能用[]中insertion，因为这样就不会去重了...
 
-## 第七讲
+## 第七讲 分配器之测试
 
 分配器测试-支持对内存的使用
 
@@ -120,7 +120,7 @@ unordered_map/unordered_set不多赘述
 
 # 深入源码
 
-## 第八讲
+## 第八讲 源代码之分布VC，GCC
 
 源码之前，了无秘密
 
@@ -128,7 +128,7 @@ unordered_map/unordered_set不多赘述
 
 >**一定要学好数据结构和算法！@@**
 
-## 第九讲
+## 第九讲 OOP面向对象编程vs GP泛型编程
 
 OOP和GP，采用GP可以让Containers和Algorithms团队各司其职，它们通过Iterator沟通就可。
 >**才发现微软爸爸竟然19年就公开了[MSVC的STL源码](https://github.com/microsoft/STL)**
@@ -137,7 +137,7 @@ OOP和GP，采用GP可以让Containers和Algorithms团队各司其职，它们�
 
 为什么list不能用::sort()排序--::sort()表示全局的排序算法?因为list不是连续空间...
 
-## 第十讲
+## 第十讲 技术基础：操作符重载and模板泛化，全特化，偏特化
 
 操作符重载
 
@@ -166,7 +166,7 @@ template <class Iterator> struct iterator_traits{...};
 
 template <class T> struct iterattor<T*>{...};
 
-## 第十一讲
+## 第十一讲 分配器
 
 重点来了~ 首先是分配器allocators~
 
@@ -206,7 +206,7 @@ plus：为什么我在msvc stl源码里没看到分配器的源码...
 
 所以[SGI-STL源码Git地址](https://github.com/steveLauwh/SGI-STL/) 这个Repo已经总结的好好了...自愧不如
 
-## 第十二讲
+## 第十二讲 容器之间的实现关系与分类
 
 标准库里很少有继承(Inheritance)，（也尽量不要用继承），基本都是复合(Composition)
 
@@ -218,7 +218,7 @@ deque是分段连续空间。
 
 C++11中slist换名字叫做forward list(我说怎么找不到slist源代码)...
 
-## 第十三讲
+## 第十三讲 深度探索list(上)
 
 (os：以下的讲义都值得看好几遍，自己第一次听真的走马观花，建议所有新手多来几遍教程，甚至自己手打一份代码，或者一边做题做项目之类的，一边来了解，交叉进行...)
 
@@ -228,11 +228,11 @@ C++11中slist换名字叫做forward list(我说怎么找不到slist源代码)...
 
 我看的是3.3的SGI-STL源码，和PPT有点出入，但是问题不大！
 
-## 第十四讲
+## 第十四讲 深度探索list(下)
 
 对比List源码中，2版本和4版本的差别，改进。
 
-## 第十五讲
+## 第十五讲 迭代器的设计原则和Iterator Traits的作用与设计
 
 Iterator设计要遵循的原则：
 
@@ -260,7 +260,7 @@ Iterator traits用以分离class iterators和non-class iterators
 
 各种**萃取器**: type traits/iterator traits/char traits/allocator traits/pointer traits/array traits
 
-## 第十六讲
+## 第十六讲 vector深度探索
 
 vector深度探索
 
@@ -276,7 +276,7 @@ vector深度探索
 
 新版源码实现(4.9版)，乱七八糟，舍近求远，何必如此。。不多说。
 
-## 第十七讲
+## 第十七讲 array、forward list深度探索
 
 array比vector简单~
 
@@ -292,7 +292,7 @@ array在内存中也是连续的空间，所以迭代器就是一个native point
 
 forward_list这个，只要会了双向链表，就比较容易了。
 
-## 第十八讲
+## 第十八讲 deque、queue和stack深度探索(上)
 
 哦！终于到stack和queue这个数据结构中最开始要认识的东西了
 
@@ -319,7 +319,7 @@ first和last是标兵，指向一个buffer的头和尾。
 ![deque大小](deque大小.png)
 
 
-## 第十九讲
+## 第十九讲 deque/queue和stack深度探索(下)
 
 扩充缓冲区的时候，是2倍扩充，并且在copy原数据到新内存时，是copy到中间位置。
 
@@ -327,92 +327,117 @@ Stack和Queue：
 
 stack和queue都不允许遍历，他们也不提供迭代器。
 
-## 第二十讲
+## 第二十讲 RB_TREE 深度探索
 
 上几讲都是sequence container，序列式容器，下面讲associated container，关联式容器，关联式容器很重要~用key去找我们真正的数据
 
+序列式容器内部实现大多是：红黑树和哈希表
+
 RB TREE 深度搜索
 
-红黑树排列规则有利于search和insert。
+红黑树排列规则有利于search和insert，高度平衡的二分查找树~
+
+对红黑树进行**中序遍历**就能得到一个排序好的状态~
+
+不应使用rb_tree的iterator来改变元素的值，这样就破坏了红黑树的规则，但编程层面没有禁止这个事情
+
+(红黑树是按照key来排的，map容器允许元素的data被改变，只有元素的key才是不可以被改变的
+
+Key+data=Value(标准库里实现的红黑树)
+
+不管任何编译器，创建的(仿)函数大小一定是1个字节(虽然函数应该是0，它是没有字节的)
+
+内存对齐：9——>12，以4的倍数分配内存
+
+G4.9的类与类设计是为了符合：handle and body的设计手法~
+
+## 第二十一讲 set/multiset深度探索
+
+set/multiset的元素value和key合一：value就是key(data是空的)
+
+set其实类似stack和queue，把所有的功能交给了内部的rb_tree去做，所以set也是一种适配器。
+
+set适配器可以直接在建立数据的时候就给数据排序+去重哇(set<int>iset;)
+
+## 第二十二讲 map/multimap深度探索
+
+map/multimap是有key也有data，共同组合成value。
+
+map/multimap不允许改key，允许改data
+
+map的中括号：[] 这个功能的实现方法里是有lower_bound()这个函数的，速度比insert会慢的
+
+## 第二十三讲 hashtable深度探索(上)
 
 
 
-## 第二十一讲
+## 第二十四讲 hashtable深度探索(下)
 
 
-## 第二十二讲
+## 第二十五讲 hash set、 hash multiset、 hash map、 hash multimap的概念
 
 
-## 第二十三讲
+## 第二十六讲 unordered容器概念
 
 
-## 第二十四讲
+## 第二十七讲 算法的形式
 
 
-## 第二十五讲
+## 第二十八讲 迭代器的分类
 
 
-## 第二十六讲
+## 第二十九讲 迭代器分类对算法的影响
 
 
-## 第二十七讲
+## 第三十讲 算法源代码剖析(11个例子)
 
 
-## 第二十八讲
+## 第三十一讲 仿函数和函数对象
 
 
-## 第二十九讲
+## 第三十二讲 存在多种Adapter
 
 
-## 第三十讲
+## 第三十三讲 Binder2nd
 
 
-## 第三十一讲
+## 第三十四讲 not1
 
 
-## 第三十二讲
+## 第三十五讲 bind
 
 
-## 第三十三讲
+## 第三十六讲 reverse iterator
 
 
-## 第三十四讲
+## 第三十七讲 inserter
 
 
-## 第三十五讲
+## 第三十八讲 ostream iterator
 
 
-## 第三十六讲
+## 第三十九讲 istream iterator
 
 
-## 第三十七讲
+## 第四十讲 一个万用的hash function
 
 
-## 第三十八讲
+## 第四十一讲 Tuple 用例
 
 
-## 第三十九讲
+## 第四十二讲 type traits
 
 
-## 第四十讲
+## 第四十三讲 type traits实现
 
 
-## 第四十一讲
+## 第四十四讲 cout
 
 
-## 第四十二讲
+## 第四十五讲 movable元素对于deque速度效能的影响
 
 
-## 第四十三讲
-
-
-## 第四十四讲
-
-
-## 第四十五讲
-
-
-## 第四十六讲
+## 第四十六讲 测试函数
 
 
 
