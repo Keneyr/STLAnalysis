@@ -278,7 +278,7 @@ vector深度探索
 
 ## 第十七讲 array、forward list深度探索
 
-array比vector简单~
+array比vector简单~array是定长的~array对象在栈区，vector对象在堆区
 
 为什么要把数组包装成容器来用呢？
 
@@ -368,6 +368,8 @@ map/multimap不允许改key，允许改data
 map的中括号：[] 这个功能的实现方法里是有lower_bound()这个函数的，速度比insert会慢的
 
 ## 第二十三讲 hashtable深度探索(上)
+
+哈希表比红黑树简单多了~ (红黑树各种左右平衡，晦涩)
 
 
 
