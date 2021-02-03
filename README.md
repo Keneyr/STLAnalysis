@@ -371,24 +371,63 @@ map的中括号：[] 这个功能的实现方法里是有lower_bound()这个函�
 
 哈希表比红黑树简单多了~ (红黑树各种左右平衡，晦涩)
 
+链接法和开放寻址法(Introduction-to-algorithm这个仓库里我有写)
 
+篮子/桶子
+
+如果元素的数量超过篮子的数量，就要扩展篮子的数量，把元素重新打散，重新计算放置rehashing
+
+rehashing是一件花时间的事情，主要是为了让一个篮子下面提溜的链表不要那么长
 
 ## 第二十四讲 hashtable深度探索(下)
 
+要学会自己设计hashFunc(这个好难啊，要根据手头的数据去设计的)
+
+通过观察hash内部的特化、偏特化代码：
+
+如果传递是数值，那么数值就是编号；如果是字符串，比如C-style的const char\* s，那么会有专门的__stl_hash_string()来搞哈希映射：
+
+![特化](images/hash-code.png)
+
+当然这个hashFunc每家公司可能都不一样，当然要足够够乱，作为一个数学渣，先不深入了解了...
+
+![哈希函数](images/hashfunc.png)
+
+标准库没有提供hash<std::string>类型的特化模板，所以你要自己写~
 
 ## 第二十五讲 hash set、 hash multiset、 hash map、 hash multimap的概念
 
+貌似和上几集重复了
 
 ## 第二十六讲 unordered容器概念
 
+C++11把hash_set/hash_multiset/hash_map/hash_multimap换成了unordered_xxx
+
+内部还是hashtable来实现的
+
+(但是这里的set、map为啥要用hashtable来实现恩？红黑树不香吗？)
 
 ## 第二十七讲 算法的形式
 
+继续深入走源代码~马上要“第三讲”啦
 
 ## 第二十八讲 迭代器的分类
 
+Array/Vector/Deque/Map/Set/Unordered_xx这些容器的迭代器都会是什么类型呢？
+
+![各容器的迭代器](images/iterator.png)
+
+父类有typedef，它的子类也会自动继承这些typedef，纯粹是为了少打几行代码
+
+ostream和istream中的iterator_category也很有意思，可以看下图：
+
+![istream_iterator](images/istream_iterator.png)
 
 ## 第二十九讲 迭代器分类对算法的影响
+
+算法需要知道iterator~
+
+
 
 
 ## 第三十讲 算法源代码剖析(11个例子)
