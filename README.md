@@ -515,7 +515,7 @@ A要取用B的功能：A继承B或者A内含B(Composition复合)
 
 迭代器适配器：
 
-![inserter](inserter.png)
+![inserter](images/inserter.png)
 
 ## 第三十八讲 ostream iterator
 
@@ -537,15 +537,23 @@ X适配器：ostream_iterator
 
 所谓的hashFunc就是希望产生的hashcode越乱越好，不要重复，所以从这里开始讲起。
 
+variadic templates：帮我们做到recursive，分解。
 
+![variadic_templates](images/variadic_templates.png)
 
+实验代码：
 
+![Useful_hash_Func](images/Useful_hash_Func.png)
 
 ## 第四十一讲 Tuple 用例
 
+额，没见过用tuple的代码啊。C++真的越来越花里胡哨了
+
+没仔细听这个tuple，感觉用的不多
 
 ## 第四十二讲 type traits
 
+因为用的比较少，所以这里及以下暂且不看
 
 ## 第四十三讲 type traits实现
 
